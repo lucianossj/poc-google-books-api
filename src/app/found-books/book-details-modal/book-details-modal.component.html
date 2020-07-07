@@ -1,0 +1,97 @@
+<button type="button" class="btn btn-primary" (click)="openModal(modal)">Mais detalhes</button>
+
+<ng-template #modal>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"> {{ item.volumeInfo.title }} </h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+        
+        <div class="row">
+
+            <div class="col-sm-4">
+                <img 
+                class="thumbs" 
+                [src]="getVolumeThumbnail(item.volumeInfo)" 
+                [alt]="item.volumeInfo.title">
+            </div>
+
+            <div class="col-sm-8">
+                <div class="row" *ngIf="!!item && !!item.volumeInfo && !!item.volumeInfo.subtitle">
+                    <div class="col-sm-12">
+                        Subtítulo:
+                        {{ item.volumeInfo.subtitle }}
+                    </div>
+                </div>
+        
+                <div class="row" *ngIf="!!item && !!item.volumeInfo && !!item.volumeInfo.averageRating">
+                    <div class="col-sm-12">
+                        <span class="bold-text"> Classificação média: </span>
+                        <i class="fa fa-star text-warning"></i>
+                        {{ item.volumeInfo.averageRating }}
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="bold-text"> Idioma: </span>
+                        {{ item.volumeInfo.language }}
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="bold-text"> Quantidade de páginas: </span>
+                        {{ item.volumeInfo.pageCount }}
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="bold-text"> Publicação: </span>
+                        {{ formatDate(item.volumeInfo.publishedDate) }}
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="bold-text"> Editora: </span>
+                        {{ item.volumeInfo.publisher }}
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span class="bold-text"> Classificação de idade: </span>
+                        <span [ngClass]="{
+                                'text-danger': verifyIsMature(item.volumeInfo.maturityRating),
+                                'text-success': verifyIsNotMature(item.volumeInfo.maturityRating) 
+                            }"> 
+                            {{ getMaturityRating(item.volumeInfo.maturityRating) }}
+                        </span>
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col-sm-12">
+                        <br>
+                        <span class="bold-text"> Sinopse: </span>
+                        {{ item.searchInfo.textSnippet }}
+                    </div>
+                </div>
+
+              </div>
+            </div>
+
+        </div>
+
+      </div>
+        
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Cancelar</button>
+        <button type="button" class="btn btn-success" (click)="submitNewRetestTerm()">Cadastrar</button> -->
+      </div>
+  </ng-template>

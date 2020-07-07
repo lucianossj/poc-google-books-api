@@ -4,15 +4,15 @@
     <div class="row">
       <div class="col-md-12">
   
-        <app-search-card></app-search-card>
+        <app-search-card (search)="searchedVolumes($event)"></app-search-card>
         
       </div>
     </div>
 
-    <div class="row mt-5">
+    <div class="row mt-5" *ngIf="search | async">
       <div class="col-md-12">
   
-        <app-found-books></app-found-books>
+        <app-found-books [search]="search"></app-found-books>
         
       </div>
     </div>

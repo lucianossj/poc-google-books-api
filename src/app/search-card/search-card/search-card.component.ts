@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SearchCardService } from './services/search-card.service';
+import { VolumeModel } from './models/volume.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-search-card',
@@ -10,6 +12,9 @@ import { SearchCardService } from './services/search-card.service';
 export class SearchCardComponent implements OnInit {
 
   public searchForm: FormGroup;
+
+  @Output()
+  public search: EventEmitter<Observable<VolumeModel>> = new EventEmitter<Observable<VolumeModel>>();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,9 +27,7 @@ export class SearchCardComponent implements OnInit {
 
   public searchVolumes(): void {
     const search = this.searchForm.getRawValue().search;
-    this.service.getVolumesBySearch(search).subscribe(
-      res => console.log(res)
-    );
+    this.search.emit(this.service.getVolumesBySearch(search));
   }
 
   public generateForm(): void {

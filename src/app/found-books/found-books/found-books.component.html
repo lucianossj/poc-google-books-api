@@ -1,16 +1,58 @@
+<div *ngIf="search | async as search">
 <div class="card">
     <div class="card-body">
       <div class="card-title title">
         Encontramos esses...
       </div>
-      <div class="card-text">
+      <div class="card-text" *ngFor="let item of search.items; index as i">
         
-        <div class="row">
-          <div class="col-md-12">
-            
-          </div>
-        </div>
+            <div class="row">
+              <div class="col-md-12">
+                
+                <hr>
 
-      </div>
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <span class="book-title">
+                            {{ item.volumeInfo.title }}
+                        </span>
+                        <span *ngIf="!!item.volumeInfo.subtitle">
+                            - {{ item.volumeInfo.subtitle }}
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img 
+                        class="thumbs" 
+                        [src]="getVolumeThumbnail(item.volumeInfo)" 
+                        [alt]="item.volumeInfo.title">
+                    </div>
+
+                    <div class="col-sm-6">
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                Autor<span *ngIf="item.volumeInfo.authors.length > 1">es</span>:
+                                <div class="row" *ngFor="let author of item.volumeInfo.authors">
+                                    <div class="col-sm-12">
+                                        {{ author }}
+                                    </div>
+                                </div>
+                                <app-book-details-modal [item]="item"></app-book-details-modal>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+              </div>
+            </div>
+
+        </div>
     </div>
+</div>
 </div>
