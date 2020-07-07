@@ -1,0 +1,13 @@
+{
+    "web": {
+        "client_id": "393217229425-6gok651jueaqcu9lhfutmidjepjhiu9u.apps.googleusercontent.com",
+        "project_id": "studied-source-282521",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret": "14rjQiTqwt4uJNbdWqHn1TAa",
+        "javascript_origins": [
+            "https://studied-source-282521.web.app"
+        ]
+    }
+}
