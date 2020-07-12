@@ -5,6 +5,8 @@ import { ModalModule, BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { FoundBooksComponent } from './found-books/found-books.component';
 import { BookDetailsModalComponent } from './book-details-modal/book-details-modal.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { BookService } from './book-details-modal/services/book.service';
 
 @NgModule({
   declarations: [
@@ -13,14 +15,17 @@ import { BookDetailsModalComponent } from './book-details-modal/book-details-mod
   ],
   imports: [
     CommonModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgxPaginationModule
   ],
   exports: [
-    FoundBooksComponent
+    FoundBooksComponent,
+    BookDetailsModalComponent
   ],
   providers: [
     BsModalService,
-    BsModalRef
+    BsModalRef,
+    BookService
   ]
 })
 export class FoundBooksModule { }

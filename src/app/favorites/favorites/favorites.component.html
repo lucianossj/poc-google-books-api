@@ -1,16 +1,11 @@
-<div *ngIf="search">
-    <div class="card">
+<section  class="container">
+    <div *ngIf="favorites.length != 0" class="card favorites-card">
         <div class="card-body">
             <div class="card-title title">
-                Encontramos esses...
+                Seus favoritos
             </div>
             <div class="card-text" 
-                *ngFor="let item of search.items |
-                paginate: {
-                    itemsPerPage: 5,
-                    currentPage: this.selectedPage,
-                    totalItems: search.items.length
-                }">
+                *ngFor="let item of favorites">
 
                 <div class="row">
                     <div class="col-md-12">
@@ -51,7 +46,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <app-book-details-modal [item]="item"></app-book-details-modal>
+                                        <app-book-details-modal [item]="item" (storageChanged)="getFavorites()"></app-book-details-modal>
                                     </div>
                                 </div>
 
@@ -63,16 +58,16 @@
 
             </div>
 
-            <div class="row mt-5 justify-content-md-center">
-                <div class="col-md-8">
-                    <pagination-controls
-                        (pageChange)="changePage($event)"
-                        previousLabel="Anterior"
-                        nextLabel="Próxima"
-                    ></pagination-controls>
-                </div>
-            </div>
-
         </div>
     </div>
-</div>
+    <div *ngIf="favorites.length == 0" class="card favorites-card">
+        <div class="card-body">
+            <div class="card-title title">
+                Ainda não há nenhum favorito...
+            </div>
+            <div class="card-text">
+                <button class="button btn btn-primary" (click)="redirectToHome()"> Pesquisar livros </button>
+            </div>
+        </div>
+    </div>
+</section>

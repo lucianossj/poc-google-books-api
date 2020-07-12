@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, Input } from '@angular/core';
+import { Component, OnInit, TemplateRef, Input, Output, EventEmitter } from '@angular/core';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import * as moment from 'moment';
@@ -8,6 +8,7 @@ import { FoundBooksEnum } from '../found-books/enum/found-books.enum';
 import { VolumeItemModel } from 'src/app/search-card/search-card/models/volume-item.model';
 import { MaturityRatingApiEnum } from './enum/maturity-rating-api.enum';
 import { MaturityRatingEnum } from './enum/maturity-rating.enum';
+import { BookService } from './services/book.service';
 
 @Component({
   selector: 'app-book-details-modal',
@@ -21,7 +22,11 @@ export class BookDetailsModalComponent implements OnInit {
   @Input()
   public item: VolumeItemModel;
 
+  @Output()
+  public storageChanged: EventEmitter<void> = new EventEmitter<void>();
+
   constructor(
+    private bookService: BookService,
     private modalService: BsModalService
   ) { }
 
@@ -31,7 +36,6 @@ export class BookDetailsModalComponent implements OnInit {
   public openModal(template: TemplateRef<any>): void {
     const initialState = { class: 'modal-md' };
     this.modal = this.modalService.show(template, initialState);
-    console.log(this.item);
   }
 
   public getVolumeThumbnail(volumeInfo: VolumeInfoModel): string {
@@ -62,6 +66,20 @@ export class BookDetailsModalComponent implements OnInit {
 
   public verifyIsNotMature(maturityRating: string): boolean {
     return maturityRating == MaturityRatingApiEnum.NOT_MATURE;
+  }
+
+  public addToFavorites(item: VolumeItemModel): void {
+    this.bookService.addToFavorites(item);
+    this.storageChanged.emit();
+  }
+  
+  public removeFromFavorites(item: VolumeItemModel): void {
+    this.bookService.removeFromFavorites(item);
+    this.storageChanged.emit();
+  }
+
+  public verifyBookIsAlreadyFavorite(item: VolumeItemModel): boolean {
+    return this.bookService.verifyBookIsAlreadyFavorite(item);
   }
 
 }

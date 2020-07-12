@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnChanges, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SearchCardService } from './services/search-card.service';
 import { VolumeModel } from './models/volume.model';
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   templateUrl: './search-card.component.html',
   styleUrls: ['./search-card.component.css']
 })
-export class SearchCardComponent implements OnInit {
+export class SearchCardComponent implements OnInit, OnChanges {
 
   public searchForm: FormGroup;
 
@@ -25,9 +25,15 @@ export class SearchCardComponent implements OnInit {
     this.generateForm();
   }
 
+  ngOnChanges(): void {
+    this.searchVolumes();
+  }
+
   public searchVolumes(): void {
-    const search = this.searchForm.getRawValue().search;
-    this.search.emit(this.service.getVolumesBySearch(search));
+    if (this.searchForm) {
+      const search = this.searchForm.getRawValue().search;
+      this.search.emit(this.service.getVolumesBySearch(search));
+    }
   }
 
   public generateForm(): void {

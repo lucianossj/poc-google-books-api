@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { VolumeModel } from './search-card/search-card/models/volume.model';
+import { LocalStorageEnum } from './enum/local-storage.enum';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +9,10 @@ import { VolumeModel } from './search-card/search-card/models/volume.model';
 export class AppComponent {
   title = 'poc-south-system';
 
-  public search: Observable<VolumeModel>;
+  constructor() {}
 
-  public searchedVolumes(search: Observable<VolumeModel>): void {
-    this.search = search;
+  public isUserLogged(): boolean {
+    return !!localStorage.getItem(LocalStorageEnum.USER);
   }
 
 }

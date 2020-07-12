@@ -2,3 +2,16 @@
     background-image: url(https://www.detroitlabs.com/wp-content/uploads/2018/02/alfons-morales-YLSwjSy7stw-unsplash.jpg);
     background-repeat: repeat-y;
 }
+
+.home-title {
+    font-family: 'Homemade Apple', cursive;
+}
+
+.title {
+    font-weight: bold;
+    font-family: 'MuseoModerno', cursive;
+}
+
+.default-text {
+    font-family: 'Roboto Condensed', sans-serif;
+}

@@ -1,0 +1,27 @@
+<div *ngIf="auth.user | async as user; else login">
+    <app-home></app-home>
+</div>
+
+<ng-template #login>
+
+    <section class="container">
+        <div class="card login-card">
+            <div class="row mt-5 mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="text-warning home-title mt-3"> Books Search </h2>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-12 justify-content-md-center">
+                            <button class="button btn btn-success" (click)="auth.googleSignIn()"> Realizar login com Google
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</ng-template>
