@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FavoritesModule } from './favorites/favorites.module';
+import { AuthService } from './guards/auth.service';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDpVlGqUcMk7P6IzCiiDJSMMn9xDPAtY7g",
@@ -41,6 +42,7 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     NgxPaginationModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [AuthService]
 })
 export class AppModule { }

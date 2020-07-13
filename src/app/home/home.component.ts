@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { VolumeModel } from '../search-card/search-card/models/volume.model';
 import { Observable } from 'rxjs';
-import { AuthService } from '../guards/auth.service';
 
 @Component({
   selector: 'app-home',

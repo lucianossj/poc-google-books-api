@@ -10,9 +10,7 @@ import { UserModel } from './models/user.model';
 import { LocalStorageEnum } from '../enum/local-storage.enum';
 import { auth } from 'firebase';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
 
   public user: Observable<UserModel>;

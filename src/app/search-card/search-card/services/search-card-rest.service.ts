@@ -17,8 +17,4 @@ export class SearchCardRestService {
     return this.http.get<VolumeResponse>(`${EndpointEnum.VOLUMES}?q=${search}&maxResults=40`)
   }
 
-  public getVolumesBySearchAndPage(search: string, selectedPage: number): Observable<VolumeResponse> {
-    return this.http.get<VolumeResponse>(`${EndpointEnum.VOLUMES}?q=${search}&startIndex=${(selectedPage + 1) * 10}&maxResults=10`)
-  }
-
 }

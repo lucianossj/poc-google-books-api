@@ -20,9 +20,4 @@ export class SearchCardService {
     );
   }
 
-  public getVolumesBySearchAndPage(search: string, selectedPage: number): Observable<VolumeModel> {
-    return this.restService.getVolumesBySearchAndPage(search, selectedPage).pipe(
-      map(volume => VolumeMapper.mapVolumeResponseToModel(volume))
-    );
-  }
 }

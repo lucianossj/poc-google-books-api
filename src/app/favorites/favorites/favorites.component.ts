@@ -3,7 +3,6 @@ import { VolumeItemModel } from 'src/app/search-card/search-card/models/volume-i
 import { VolumeInfoModel } from 'src/app/search-card/search-card/models/volume-info.model';
 import { FoundBooksEnum } from 'src/app/found-books/found-books/enum/found-books.enum';
 import { FavoritesService } from '../services/favorites.service';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class FavoritesComponent implements OnInit {
 
-  public favorites: VolumeItemModel[];
+  public favorites: VolumeItemModel[] = [];
 
   public selectedPage: number = 1;
 
