@@ -7,7 +7,7 @@ import { LocalStorageEnum } from './enum/local-storage.enum';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'poc-sgoogle-books-api';
+  title = 'poc-google-books-api';
 
   constructor() {}
 
